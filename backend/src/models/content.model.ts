@@ -27,4 +27,4 @@ const contentSchema = new mongoose.Schema({
     }
 });
 
-export const tagModel = mongoose.model("Content", contentSchema);
+export const contentModel = mongoose.model("Content", contentSchema);

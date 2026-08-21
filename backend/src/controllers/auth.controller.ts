@@ -6,7 +6,7 @@ import { type Request, type Response } from 'express'
 export async function registerUser (req: Request, res: Response) {
   try {
     const { username, password } = req.body
-    if (!username?.trim() || !password?.trim) {
+    if (!username?.trim() || !password?.trim()) {
       return res.status(400).json({
         message: 'Username and password are required'
       })
@@ -38,7 +38,7 @@ export async function registerUser (req: Request, res: Response) {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax'
     })
 
@@ -60,7 +60,7 @@ export async function registerUser (req: Request, res: Response) {
 export async function loginUser (req: Request, res: Response) {
   try {
     const { username, password } = req.body
-    if (!username?.trim() || !password?.trim) {
+    if (!username?.trim() || !password?.trim()) {
       return res.status(400).json({
         message: 'Username and password are required'
       })
@@ -93,7 +93,7 @@ export async function loginUser (req: Request, res: Response) {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax'
     })
 
@@ -105,7 +105,7 @@ export async function loginUser (req: Request, res: Response) {
       }
     })
   } catch (err) {
-    console.log('user signup error: ', err)
+    console.log('user login error: ', err)
     res.status(500).json({
       message: 'Internal server error'
     })
@@ -115,7 +115,7 @@ export async function loginUser (req: Request, res: Response) {
 export async function logoutUser (req: Request, res: Response) {
   res.clearCookie('token', {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax'
   });
 
