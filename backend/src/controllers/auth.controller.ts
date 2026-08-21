@@ -2,6 +2,8 @@ import { userModel } from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { type Request, type Response } from 'express'
+import { contentModel } from '../models/content.model.js';
+import { read } from 'fs';
 
 export async function registerUser (req: Request, res: Response) {
   try {
@@ -121,5 +123,34 @@ export async function logoutUser (req: Request, res: Response) {
 
   res.status(200).json({
     message: "Logout successfull"
+  })
+}
+
+export async function addContent (req: Request, res: Response) {
+  const { type, link, title, tags } = req.body
+  if (!type?.trim() || !link?.trim() || !title?.trim()) {
+    return res.status(400).json({
+      message: 'Types or Link or Title missing are required'
+    });
+  }
+
+  const user = req.user
+  if(!user){
+    return res.status(401).json({
+      message: "Unauthorized"
+    })
+  }
+
+  const content = await contentModel.create({
+    title,
+    link,
+    type,
+    tags,
+    userId: user._id
+  })
+
+  res.status(201).json({
+    message: "Content addition successful",
+    content
   })
 }
