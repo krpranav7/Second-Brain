@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { type Request, type Response } from 'express'
 import { contentModel } from '../models/content.model.js';
-import { read } from 'fs';
+import { tagModel } from '../models/tag.model.js';
 
 export async function registerUser (req: Request, res: Response) {
   try {
@@ -141,11 +141,22 @@ export async function addContent (req: Request, res: Response) {
     })
   }
 
+  const tagIds = await Promise.all(
+    (tags ?? []).map(async (tagName: string) => {
+      const tag = await tagModel.findOneAndUpdate(
+        {title: tagName},
+        {title: tagName},
+        {upsert: true, new: true}
+      )
+      return tag._id
+    })
+  )
+
   const content = await contentModel.create({
     title,
     link,
     type,
-    tags,
+    tags: tagIds,
     userId: user._id
   })
 
@@ -153,4 +164,78 @@ export async function addContent (req: Request, res: Response) {
     message: "Content addition successful",
     content
   })
+}
+
+export async function getContents(req: Request, res: Response){
+  try{
+    const user = req.user
+    if(!user){
+      return res.status(401).json({
+        message: "Unauthorized"
+      })
+    }
+    const userId = user._id
+    const contents = await contentModel.find({
+      userId
+    }).populate('userId', 'username')
+
+    if(contents.length === 0){
+      return res.status(200).json({
+        message: "No content added for this user",
+        content: []
+      })
+    }
+
+    res.status(200).json({
+      message: "Contents fetch successful",
+      contents
+    })
+
+  }
+  catch(err){
+    console.log('get all existing contents error: ', err)
+    res.status(500).json({
+      message: 'Internal server error'
+    })
+  }
+}
+
+export async function deleteContent(req: Request, res: Response){
+  try{
+    const contentId = req.body.contentId;
+    const content = await contentModel.findById(contentId)
+    if(!content){
+      return res.status(200).json({
+        message: "Incorrect contentId"
+      })
+    }
+
+    const user = req.user
+    if(!user){
+      return res.status(401).json({
+        message: "Unauthorized"
+      })
+    }
+
+    if(content.userId.toString() !== user._id.toString()){
+      return res.status(403).json({
+        message: "You are not allowed to delete this content"
+      })
+    }
+    await contentModel.deleteOne({
+      _id: contentId,
+      userId: user._id
+    })
+
+    res.status(200).json({
+      message: "Content deleted",
+      content
+    })
+  }
+  catch(err){
+    console.log('Content deletion error: ', err)
+    res.status(500).json({
+      message: 'Internal server error'
+    })   
+  }
 }

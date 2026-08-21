@@ -26,7 +26,7 @@ export async function authUserMiddleware (
       })
     }
     const payload = decoded as AuthTokenPayload
-    const user = await userModel.findById(payload.id)
+    const user = await userModel.findById(payload.id).select('-password')
     if (!user) {
       return res.status(401).json({
         message: 'User not found'
