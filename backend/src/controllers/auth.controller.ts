@@ -140,12 +140,13 @@ export async function addContent (req: Request, res: Response) {
       message: "Unauthorized"
     })
   }
-
+  // Wrapped in Promise.all because we're doing several independent async DB calls (one per tag) — running them concurrently instead of one at a time with a loop.
   const tagIds = await Promise.all(
     (tags ?? []).map(async (tagName: string) => {
+      const normalizedTag = tagName.trim().toLowerCase()
       const tag = await tagModel.findOneAndUpdate(
-        {title: tagName},
-        {title: tagName},
+        {title: normalizedTag},
+        {title: normalizedTag},
         {upsert: true, new: true}
       )
       return tag._id
