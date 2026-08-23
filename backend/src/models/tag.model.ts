@@ -8,4 +8,9 @@ const tagSchema = new mongoose.Schema({
     }
 });
 
+tagSchema.index(
+  { title: 1 },
+  { unique: true, collation: { locale: 'en', strength: 2 } }
+)
+
 export const tagModel = mongoose.model("Tag", tagSchema);
