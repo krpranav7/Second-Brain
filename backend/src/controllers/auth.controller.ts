@@ -4,6 +4,8 @@ import jwt from 'jsonwebtoken'
 import { type Request, type Response } from 'express'
 import { contentModel } from '../models/content.model.js';
 import { tagModel } from '../models/tag.model.js';
+import { linkModel } from '../models/link.model.js';
+import { hashGenerator } from '../utilities/hashGenerator.js'
 
 export async function registerUser (req: Request, res: Response) {
   try {
@@ -238,5 +240,87 @@ export async function deleteContent(req: Request, res: Response){
     res.status(500).json({
       message: 'Internal server error'
     })   
+  }
+}
+
+export async function shareBrain(req: Request, res: Response){
+  try{
+    const share = req.body.share; // true or false
+    const user = req.user;
+    if(!user){
+      return res.status(401).json({
+        message: "Unauthorized"
+      })
+    }
+
+    if(share){
+      const existingLink = await linkModel.findOne({
+        userId: user._id
+      })
+      
+      if(existingLink){
+        return res.status(409).json({
+          message: "share link already exists",
+          hash: existingLink.hash
+        })
+      }
+      const hash = hashGenerator(10)
+      await linkModel.create({
+        userId: user._id,
+        hash: hash
+      })
+
+      res.status(201).json({
+        message: "Hash/shareable link creation successful",
+        hash: hash
+      })
+    } else{
+      await linkModel.deleteOne({
+        userId: user._id
+      })
+      return res.status(200).json({
+        message: "shareable hash/link deletion successful"
+      })
+    }
+  }
+  catch(err){
+    console.log('Brain share error: ', err)
+    res.status(500).json({
+      message: 'Internal server error'
+    }) 
+  }
+}
+
+export async function getSharedBrain(req: Request, res: Response) {
+  try{
+    const hash = req.params.shareLink;
+    if(!hash){
+      return res.status(401).json({
+        message: "Corrupted hash/link"
+      })
+    }
+
+    const link = await linkModel.findOne({
+      hash: hash
+    })
+    if(!link){
+      return res.status(404).json({
+        message: "Incorrect hash/link"
+      })
+    }
+
+    const content = await contentModel.find({
+      userId: link.userId
+    })
+    res.status(200).json({
+      message: "Brain fetch successful",
+      content: content
+    })
+  }
+  catch(err){
+    console.log('Shared brain fetch error: ', err)
+    res.status(500).json({
+      message: 'Internal server error'
+    }) 
   }
 }
