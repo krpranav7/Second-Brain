@@ -1,13 +1,13 @@
 {
-  "name": "week-15",
+  "name": "second-brain-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "dev": "node --import tsx --watch src/server.ts",
-    "start": "node dist/sever.ts"
+    "start": "node dist/server.ts"
   },
   "keywords": [],
   "author": "",

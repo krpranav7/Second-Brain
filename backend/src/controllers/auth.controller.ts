@@ -208,7 +208,7 @@ export async function deleteContent(req: Request, res: Response){
     const contentId = req.body.contentId;
     const content = await contentModel.findById(contentId)
     if(!content){
-      return res.status(200).json({
+      return res.status(404).json({
         message: "Incorrect contentId"
       })
     }
@@ -295,7 +295,7 @@ export async function getSharedBrain(req: Request, res: Response) {
   try{
     const hash = req.params.shareLink;
     if(!hash){
-      return res.status(401).json({
+      return res.status(400).json({
         message: "Corrupted hash/link"
       })
     }
