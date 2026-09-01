@@ -1,6 +1,6 @@
 import { useState, type SubmitEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {Brain} from 'lucide-react'
+import { Brain } from 'lucide-react'
 import { signup } from "../api/auth";
 import { ThemeToggle } from "../components/ui/ThemeToggle";
 
@@ -47,7 +47,7 @@ export function Signup(){
                 <h1 className="mb-4 text-center text-lg font-semibold text-slate-900 dark:text-white">Create your account</h1>
 
                 {error && (
-                    <p className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">{error}</p>
+                    <p className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400 flex justify-center items-center">{error}</p>
                 )}
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
