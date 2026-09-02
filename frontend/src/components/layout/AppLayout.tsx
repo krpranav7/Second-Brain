@@ -1,14 +1,15 @@
 import { useState, type ReactNode } from 'react'
-import { FileText, Hash, Link2, MessageSquare, Video } from 'lucide-react'
+import { FileText, Headphones, Image, Layers, MessageSquare, Video } from 'lucide-react'
 import { Navbar } from './Navbar'
 import { Sidebar, type NavItem } from './Sidebar'
 
 const navItems: NavItem[] = [
-    { id: 'tweets', label: 'Tweets', icon: MessageSquare },
-    { id: 'videos', label: 'Videos', icon: Video },
-    { id: 'documents', label: 'Documents', icon: FileText },
-    { id: 'links', label: 'Links', icon: Link2 },
-    { id: 'tags', label: 'Tags', icon: Hash }
+    { id: 'all', label: 'All Notes', icon: Layers },
+    { id: 'tweet', label: 'Tweets', icon: MessageSquare },
+    { id: 'video', label: 'Videos', icon: Video },
+    { id: 'image', label: 'Images', icon: Image },
+    { id: 'article', label: 'Articles', icon: FileText },
+    { id: 'audio', label: 'Audio', icon: Headphones }
 ]
 
 interface AppLayoutProps {

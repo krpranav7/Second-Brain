@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const contentTypes = ['image', 'video', 'article', 'audio']
+const contentTypes = ['image', 'video', 'article', 'audio', 'tweet']
 
 const contentSchema = new mongoose.Schema({
     link: {
@@ -25,6 +25,8 @@ const contentSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     }
+}, {
+    timestamps: true
 });
 
 export const contentModel = mongoose.model("Content", contentSchema);

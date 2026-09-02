@@ -1,4 +1,4 @@
-export type ContentType = 'image' | 'video' | 'article' | 'audio'
+export type ContentType = 'image' | 'video' | 'article' | 'audio' | 'tweet'
 
 export interface Tag{
     _id: string
