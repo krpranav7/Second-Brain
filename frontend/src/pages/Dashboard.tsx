@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Layers } from 'lucide-react'
 import { AppLayout } from "../components/layout/AppLayout"
 import { ContentGrid } from "../components/content/ContentGrid"
 import { useContent } from "../hooks/useContent"
