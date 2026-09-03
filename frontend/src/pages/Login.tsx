@@ -2,29 +2,32 @@ import { useState, type SubmitEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Brain } from 'lucide-react'
 import { login } from "../api/auth";
-import { ThemeToggle } from "../components/ui/ThemeToggle";
+import { ThemeToggle } from "../components/ui/ThemeToggle"
+import { useAuth } from "../context/AuthContext"
 
-export function Login(){
+export function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
+    const { setUser } = useAuth()
 
     async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
         e.preventDefault()
         setError('');
         setIsLoading(true)
 
-        try{
-            await login(username, password)
+        try {
+            const {user} = await login(username, password)
+            setUser(user)
             navigate('/')
         }
-        catch(err: any){
+        catch (err: any) {
             const message = err.response?.data?.message ?? 'Something went wrong. Please try again.'
             setError(message)
         }
-        finally{
+        finally {
             setIsLoading(false)
         }
     }
@@ -32,7 +35,7 @@ export function Login(){
     return (
         <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 dark:bg-slate-950">
             <div className="w-full max-w-sm rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                
+
                 <div className="mb-6 relative flex items-center justify-center">
                     <div className="flex items-center gap-2">
                         <Brain className="text-indigo-600 dark:text-indigo-400" size={28} />

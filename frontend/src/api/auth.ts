@@ -23,3 +23,8 @@ export async function login(username: string, password: string): Promise<AuthRes
 export async function logout(): Promise<void> {
     await api.post('/logout')
 }
+
+export async function getCurrentUser(): Promise<AuthResponse['user']>{
+    const response = await api.get<{user: AuthResponse['user']}>('/me')
+    return response.data.user
+}

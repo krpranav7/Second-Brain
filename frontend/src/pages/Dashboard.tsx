@@ -3,9 +3,9 @@ import { AppLayout } from "../components/layout/AppLayout"
 import { ContentGrid } from "../components/content/ContentGrid"
 import { useContent } from "../hooks/useContent"
 
-export function Dashboard(){
+export function Dashboard() {
     const [activeId, setActiveId] = useState('all')
-    const {contents, isLoading, error, removeContent} = useContent()
+    const { contents, isLoading, error, removeContent } = useContent()
 
     const filteredContents = activeId === 'all' ? contents : contents.filter((c) => c.type === activeId)
 
