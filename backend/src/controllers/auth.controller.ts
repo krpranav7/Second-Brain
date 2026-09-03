@@ -324,3 +324,19 @@ export async function getSharedBrain(req: Request, res: Response) {
     }) 
   }
 }
+
+export async function getCurrentUser(req: Request, res: Response){
+  const  user = req.user
+  if(!user){
+    return res.status(401).json({
+      message: 'Not authenticated'
+    })
+  }
+
+  res.status(200).json({
+    user: {
+      _id: user._id,
+      username: user.username
+    }
+  })
+}
