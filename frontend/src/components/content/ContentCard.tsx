@@ -1,13 +1,15 @@
-import { FileText, Link2, MessageSquare, Trash2, Video } from "lucide-react"
-import { useState } from "react"
+import { FileText, Headphones, Link2, Trash2, Video } from "lucide-react"
+import { useState, type ElementType } from "react"
 import type {Content, ContentType} from '../../types'
 import {getYouTubeEmbedUrl} from '../../utils/embed'
+import { FaXTwitter } from "react-icons/fa6";
 
-const typeIconMap: Record<ContentType, typeof FileText> = {
+const typeIconMap: Record<ContentType, ElementType> = {
     article: FileText,
     video: Video,
     image: FileText,
-    audio: MessageSquare
+    audio: Headphones,
+    tweet: FaXTwitter
 }
 
 interface ContentCardProps{
@@ -63,12 +65,19 @@ export function ContentCard({content, onDelete}: ContentCardProps){
                     />
                 </div>
             )}
+
             {content.type === 'video' && !embedUrl && (
                 <div className="flex items-center w-full aspect-video justify-center rounded-lg bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-500">
                     <Video size={32}/>
                 </div>
             )}
 
+            {content.type === 'article' && (
+                <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
+                    Preview unavailable for this URL
+                </div>
+            )}
+            
             {content.tags.length > 0 && (
                 <div className="flex flex-wrap gap-1.5">
                     {content.tags.map((tag) => (

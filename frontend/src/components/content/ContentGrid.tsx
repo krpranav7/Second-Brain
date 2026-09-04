@@ -1,5 +1,5 @@
 import type {Content} from '../../types'
-import { ContentCard } from './contentCard';
+import { ContentCard } from './ContentCard';
 
 interface ContentGridProps{
     contents: Content[]

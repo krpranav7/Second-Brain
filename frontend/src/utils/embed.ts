@@ -13,3 +13,8 @@ export function getYouTubeEmbedUrl(url: string): string | null{
     }
     return null;
 }
+
+export function getTweetId(url: string): string | null {
+    const match = url.match(/(?:twitter|x)\.com\/[^/]+\/status\/(\d+)/)
+    return match?.[1] ?? null
+}

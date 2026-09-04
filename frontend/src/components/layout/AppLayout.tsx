@@ -1,11 +1,12 @@
 import { useState, type ReactNode } from 'react'
-import { FileText, Headphones, Image, Layers, MessageSquare, Video } from 'lucide-react'
+import { FileText, Headphones, Image, Layers, Video } from 'lucide-react'
+import { FaXTwitter } from 'react-icons/fa6'
 import { Navbar } from './Navbar'
 import { Sidebar, type NavItem } from './Sidebar'
 
 const navItems: NavItem[] = [
     { id: 'all', label: 'All Notes', icon: Layers },
-    { id: 'tweet', label: 'Tweets', icon: MessageSquare },
+    { id: 'tweet', label: 'Tweets', icon: FaXTwitter },
     { id: 'video', label: 'Videos', icon: Video },
     { id: 'image', label: 'Images', icon: Image },
     { id: 'article', label: 'Articles', icon: FileText },

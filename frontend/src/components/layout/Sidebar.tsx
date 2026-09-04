@@ -1,9 +1,9 @@
-import type { LucideIcon } from 'lucide-react'
+import type { ElementType } from 'react';
 
 export interface NavItem {
     id: string
     label: string
-    icon: LucideIcon
+    icon: ElementType
 }
 
 interface SidebarProps {

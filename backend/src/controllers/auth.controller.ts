@@ -149,7 +149,7 @@ export async function addContent (req: Request, res: Response) {
       const tag = await tagModel.findOneAndUpdate(
         {title: normalizedTag},
         {title: normalizedTag},
-        {upsert: true, new: true}
+        {upsert: true, returnDocument: 'after'}
       )
       return tag._id
     })
