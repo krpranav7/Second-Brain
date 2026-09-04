@@ -73,8 +73,17 @@ export function ContentCard({content, onDelete}: ContentCardProps){
             )}
 
             {content.type === 'article' && (
-                <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
-                    Preview unavailable for this URL
+                <div className="flex aspect-video w-full max-h-20 items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
+                    <div className="flex items-center justify-center p-2.5">
+                        Preview unavailable for this URL <br />
+                        Click title/link-icon to view this article
+                    </div>
+                </div>
+            )}
+
+            {content.type === 'tweet' && (
+                <div className="flex aspect-video w-full max-h-20 items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
+                    <p className="p-2.5">Click title/link-icon to view this post</p>
                 </div>
             )}
             
