@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import * as contentApi from '../api/content'
-import type { Content } from '../types'
+import type { Content, ContentType } from '../types'
 
 export function useContent(){
     const [contents, setContents] = useState<Content[]>([])
@@ -39,5 +39,10 @@ export function useContent(){
         }
     }
 
-    return { contents, isLoading, error, fetchContents, removeContent }
+    async function createContent(data: { title: string; link: string; type: ContentType; tags: string[] }){
+        await contentApi.addContent(data)
+        await fetchContents()
+    }
+
+    return { contents, isLoading, error, fetchContents, removeContent, createContent }
 }

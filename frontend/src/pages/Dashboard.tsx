@@ -2,10 +2,12 @@ import { useState } from "react"
 import { AppLayout } from "../components/layout/AppLayout"
 import { ContentGrid } from "../components/content/ContentGrid"
 import { useContent } from "../hooks/useContent"
+import { AddContentModal } from '../components/content/AddContentModal'
 
 export function Dashboard() {
     const [activeId, setActiveId] = useState('all')
-    const { contents, isLoading, error, removeContent } = useContent()
+    const { contents, isLoading, error, removeContent, createContent } = useContent()
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const filteredContents = activeId === 'all' ? contents : contents.filter((c) => c.type === activeId)
 
@@ -14,7 +16,7 @@ export function Dashboard() {
     return (
         <AppLayout activeId={activeId} onSelect={setActiveId}
             onShareClick={() => alert('Share Brain modal - coming soon')}
-            onAddClick={() => alert('Add Content modal - coming soon')}
+            onAddClick={() => setIsModalOpen(true)}
         >
             <h1 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">{activeLabel}</h1>
 
@@ -29,6 +31,8 @@ export function Dashboard() {
             {!isLoading && !error && (
                 <ContentGrid contents={filteredContents} onDelete={removeContent} />
             )}
+
+            <AddContentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={createContent}/>
         </AppLayout>
     )
 }
