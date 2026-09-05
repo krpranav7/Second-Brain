@@ -1,6 +1,6 @@
 import { Brain } from "lucide-react"
 
-interface LoadderProps{
+interface LoadderProps {
     message?: string
     fullScreen?: boolean
 }
