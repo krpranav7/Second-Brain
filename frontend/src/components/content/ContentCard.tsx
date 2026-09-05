@@ -1,4 +1,4 @@
-import { FileText, Headphones, Link2, Trash2, Video } from "lucide-react"
+import { FileText, Headphones, Image, Link2, Trash2, Video } from "lucide-react"
 import { useState, type ElementType } from "react"
 import type {Content, ContentType} from '../../types'
 import {getYouTubeEmbedUrl} from '../../utils/embed'
@@ -7,7 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 const typeIconMap: Record<ContentType, ElementType> = {
     article: FileText,
     video: Video,
-    image: FileText,
+    image: Image,
     audio: Headphones,
     tweet: FaXTwitter
 }
@@ -45,13 +45,15 @@ export function ContentCard({content, onDelete}: ContentCardProps){
             </div>
 
             {showImageEmbed && (
-                <img 
-                    src={content.link}
-                    alt={content.title}
-                    onError={() => setImageFailed(true)}
-                    className="w-full rounded-lg object-cover"
-                    loading="lazy"
-                />
+                <div className="aspect-video w-full overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800">
+                    <img 
+                        src={content.link}
+                        alt={content.title}
+                        onError={() => setImageFailed(true)}
+                        className="h-full w-full rounded-lg object-cover"
+                        loading="lazy"
+                    />
+                </div>
             )}
 
             {embedUrl && (
@@ -73,7 +75,7 @@ export function ContentCard({content, onDelete}: ContentCardProps){
             )}
 
             {content.type === 'article' && (
-                <div className="flex aspect-video w-full max-h-20 items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
+                <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
                     <div className="flex items-center justify-center p-2.5">
                         Preview unavailable for this URL <br />
                         Click title/link-icon to view this article
@@ -81,8 +83,17 @@ export function ContentCard({content, onDelete}: ContentCardProps){
                 </div>
             )}
 
+            {content.type === 'audio' && (
+                <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
+                    <div className="flex items-center justify-center p-2.5">
+                        Preview unavailable for this URL <br />
+                        Click title/link-icon to listen
+                    </div>
+                </div>
+            )}
+
             {content.type === 'tweet' && (
-                <div className="flex aspect-video w-full max-h-20 items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
+                <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
                     <p className="p-2.5">Click title/link-icon to view this post</p>
                 </div>
             )}
