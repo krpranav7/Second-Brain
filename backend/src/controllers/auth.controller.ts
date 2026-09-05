@@ -43,7 +43,7 @@ export async function registerUser (req: Request, res: Response) {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax'
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
     })
 
     res.status(201).json({
@@ -98,7 +98,7 @@ export async function loginUser (req: Request, res: Response) {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax'
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
     })
 
     res.status(200).json({
@@ -120,7 +120,7 @@ export async function logoutUser (req: Request, res: Response) {
   res.clearCookie('token', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax'
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
   });
 
   res.status(200).json({
