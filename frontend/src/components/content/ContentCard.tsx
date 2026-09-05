@@ -36,9 +36,9 @@ export function ContentCard({content, onDelete}: ContentCardProps){
 
                 <div className="flex shrink-0 items-center gap-1">
                     <a href={content.link} target="_blank" rel="noopener noreferrer" className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300">
-                        <Link2 size={16} />
+                        <Link2 className="cursor-pointer" size={16} />
                     </a>
-                    <button onClick={() => onDelete(content._id)} aria-label="Delete content" className="rounded-lg p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/50 dark:hover:text-red-400">
+                    <button onClick={() => onDelete(content._id)} aria-label="Delete content" className="cursor-pointer rounded-lg p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/50 dark:hover:text-red-400">
                         <Trash2 size={16}/>
                     </button>
                 </div>

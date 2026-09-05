@@ -29,14 +29,14 @@ export function Navbar({ onMenuClick, onShareClick, onAddClick }: NavbarProps) {
             <div className='flex items-center gap-2' >
                 <button
                     onClick={onShareClick}
-                    className='hidden items-center gap-2 rounded-lg bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-600 hover:bg-indigo-100 dark:bg-indigo-500/10 dark:text-indigo-400 dark:hover:bg-indigo-500/20 sm:flex'
+                    className='cursor-pointer hidden items-center gap-2 rounded-lg bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-600 hover:bg-indigo-100 dark:bg-indigo-500/10 dark:text-indigo-400 dark:hover:bg-indigo-500/20 sm:flex'
                 >
                     <Share2 size={16} />
                     Share Brain
                 </button>
                 <button
                     onClick={onAddClick}
-                    className="flex items-center gap-2 rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+                    className="cursor-pointer flex items-center gap-2 rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700"
                 >
                     <Plus size={16} />
                     <span className='hidden sm:inline' >Add Content</span>
