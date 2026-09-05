@@ -14,7 +14,7 @@ export function Navbar({ onMenuClick, onShareClick, onAddClick }: NavbarProps) {
                 <button
                     onClick={onMenuClick}
                     aria-label='Open menu'
-                    className='rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 md:hidden'
+                    className='cursor-pointer rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 md:hidden'
                 >
                     <Menu size={20} />
                 </button>
