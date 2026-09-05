@@ -40,8 +40,8 @@ export function useContent(){
     }
 
     async function createContent(data: { title: string; link: string; type: ContentType; tags: string[] }){
-        await contentApi.addContent(data)
-        await fetchContents()
+        const newContent = await contentApi.addContent(data)
+        setContents((prev) => [newContent, ...prev])
     }
 
     return { contents, isLoading, error, fetchContents, removeContent, createContent }

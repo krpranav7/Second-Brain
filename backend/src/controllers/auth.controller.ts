@@ -162,7 +162,7 @@ export async function addContent (req: Request, res: Response) {
     tags: tagIds,
     userId: user._id
   })
-
+  await content.populate('tags')
   res.status(201).json({
     message: "Content addition successful",
     content
@@ -185,7 +185,7 @@ export async function getContents(req: Request, res: Response){
     if(contents.length === 0){
       return res.status(200).json({
         message: "No content added for this user",
-        content: []
+        contents: []
       })
     }
 
