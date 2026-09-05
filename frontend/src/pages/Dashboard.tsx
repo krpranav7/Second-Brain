@@ -3,6 +3,7 @@ import { AppLayout } from "../components/layout/AppLayout"
 import { ContentGrid } from "../components/content/ContentGrid"
 import { useContent } from "../hooks/useContent"
 import { AddContentModal } from '../components/content/AddContentModal'
+import { Loader } from "../components/ui/Loader"
 
 export function Dashboard() {
     const [activeId, setActiveId] = useState('all')
@@ -20,9 +21,7 @@ export function Dashboard() {
         >
             <h1 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">{activeLabel}</h1>
 
-            {isLoading && (
-                <p className="text-slate-500 dark:text-slate-400">Loading your content...</p>
-            )}
+            {isLoading && <Loader message="Loading your content..." fullScreen={false} />}
 
             {error && !isLoading && (
                 <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">{error}</p>
