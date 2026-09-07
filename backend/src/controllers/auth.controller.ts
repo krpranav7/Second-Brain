@@ -187,7 +187,8 @@ export async function getContents(req: Request, res: Response){
     const userId = user._id
     const contents = await contentModel.find({
       userId
-    }).populate('userId', 'username').populate('tags')
+    }).sort({createdAt: -1})
+      .populate('userId', 'username').populate('tags')
 
     if(contents.length === 0){
       return res.status(200).json({
