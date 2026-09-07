@@ -31,8 +31,8 @@ export function Signup(){
     }
 
     return (
-        <div className="flex min-h-dvh items-center justify-center bg-slate-50 px-4 dark:bg-slate-950">
-            <div className="w-full max-w-sm rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div className="flex min-h-dvh items-center justify-center bg-slate-50 px-4 dark:bg-neutral-950">
+            <div className="w-full max-w-sm rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
                
                 <div className="mb-6 relative flex items-center justify-center">
                     <div className="flex items-center gap-2">
@@ -53,36 +53,36 @@ export function Signup(){
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <div>
-                        <label htmlFor="username" className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Username</label>
+                        <label htmlFor="username" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">Username</label>
                         <input type="text" id="username" value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required
-                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
+                        <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">Email</label>
                         <input type="email" id="email" value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="password" className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Password</label>
+                        <label htmlFor="password" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">Password</label>
                         <input type="password" id="password" value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
                         />
                     </div>
 
                     <button type="submit" disabled={isLoading} className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60">{isLoading ? 'Creating account...' : 'Sign up'}</button>
                 </form>
 
-                <p className="mt-4 text-center text-sm text-slate-500 dark:text-slate-400">Already have an account?{' '}
+                <p className="mt-4 text-center text-sm text-slate-500 dark:text-neutral-400">Already have an account?{' '}
                     <Link className="font-medium text-indigo-600 hover:underline dark:text-indigo-400" to="/login">Login</Link>
                 </p>
 

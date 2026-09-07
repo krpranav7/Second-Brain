@@ -25,9 +25,9 @@ export function ContentCard({content, onDelete}: ContentCardProps){
     const showImageEmbed = content.type === 'image' && !imageFailed
 
     return(
-        <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+        <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900">
             <div className="flex items-start justify-between gap-2">
-                <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                <div className="flex items-center gap-2 text-slate-500 dark:text-neutral-400">
                     <Icon size={18} />
                     <a href={content.link} target="_blank" rel="noopener noreferrer" className="font-semibold text-slate-900 hover:underline dark:text-white">
                         {content.title}
@@ -35,7 +35,7 @@ export function ContentCard({content, onDelete}: ContentCardProps){
                 </div>
 
                 <div className="flex shrink-0 items-center gap-1">
-                    <a href={content.link} target="_blank" rel="noopener noreferrer" className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300">
+                    <a href={content.link} target="_blank" rel="noopener noreferrer" className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-neutral-800 dark:hover:text-neutral-300">
                         <Link2 className="cursor-pointer" size={16} />
                     </a>
                     <button onClick={() => onDelete(content._id)} aria-label="Delete content" className="cursor-pointer rounded-lg p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/25 dark:hover:text-red-400">
@@ -45,7 +45,7 @@ export function ContentCard({content, onDelete}: ContentCardProps){
             </div>
 
             {showImageEmbed && (
-                <div className="aspect-video w-full overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800">
+                <div className="aspect-video w-full overflow-hidden rounded-lg bg-slate-100 dark:bg-neutral-800">
                     <img 
                         src={content.link}
                         alt={content.title}
@@ -57,7 +57,7 @@ export function ContentCard({content, onDelete}: ContentCardProps){
             )}
 
             {embedUrl && (
-                <div className="aspect-video w-full overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800">
+                <div className="aspect-video w-full overflow-hidden rounded-lg bg-slate-100 dark:bg-neutral-800">
                     <iframe
                         src={embedUrl}
                         title={content.title}
@@ -69,13 +69,13 @@ export function ContentCard({content, onDelete}: ContentCardProps){
             )}
 
             {content.type === 'video' && !embedUrl && (
-                <div className="flex items-center w-full aspect-video justify-center rounded-lg bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-500">
+                <div className="flex items-center w-full aspect-video justify-center rounded-lg bg-slate-100 text-slate-400 dark:bg-neutral-800 dark:text-neutral-500">
                     <Video size={32}/>
                 </div>
             )}
 
             {content.type === 'article' && (
-                <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
+                <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-neutral-800 dark:text-neutral-500">
                     <div className="flex items-center justify-center p-2.5">
                         Preview unavailable for this URL <br />
                         Click title/link-icon to view this article
@@ -84,7 +84,7 @@ export function ContentCard({content, onDelete}: ContentCardProps){
             )}
 
             {content.type === 'audio' && (
-                <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
+                <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-neutral-800 dark:text-neutral-500">
                     <div className="flex items-center justify-center p-2.5">
                         Preview unavailable for this URL <br />
                         Click title/link-icon to listen
@@ -93,7 +93,7 @@ export function ContentCard({content, onDelete}: ContentCardProps){
             )}
 
             {content.type === 'tweet' && (
-                <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-slate-800 dark:text-slate-500">
+                <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 dark:bg-neutral-800 dark:text-neutral-500">
                     <p className="p-2.5">Click title/link-icon to view this post</p>
                 </div>
             )}
@@ -109,7 +109,7 @@ export function ContentCard({content, onDelete}: ContentCardProps){
             )}
 
             {content.createdAt && (
-                <p className="text-xs text-slate-400 dark:text-slate-500">
+                <p className="text-xs text-slate-400 dark:text-neutral-500">
                     Added on {new Date(content.createdAt).toLocaleDateString()}
                 </p>
             )}

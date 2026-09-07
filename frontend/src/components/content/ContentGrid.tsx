@@ -9,8 +9,8 @@ interface ContentGridProps{
 export function ContentGrid({contents, onDelete}: ContentGridProps){
     if(contents.length === 0){
         return(
-            <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 py-16 text-center dark:border-slate-700">
-                <p className="text-slate-500 dark:text-slate-400">
+            <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 py-16 text-center dark:border-neutral-700">
+                <p className="text-slate-500 dark:text-neutral-400">
                     No content here yet. Click "Add content to save your first item"
                 </p>
             </div>

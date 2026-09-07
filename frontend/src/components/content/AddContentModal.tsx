@@ -57,20 +57,20 @@ export function AddContentModal({isOpen, onClose, onSubmit}: AddContentModalProp
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div>
-                    <label htmlFor="title" className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Title</label>
-                    <input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white" />
+                    <label htmlFor="title" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">Title</label>
+                    <input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white" />
                 </div>
 
                 <div>
-                    <label htmlFor="link" className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Link</label>
-                    <input id="link" type="url" value={link} onChange={(e) => setLink(e.target.value)} required placeholder="https://..." className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white" />
+                    <label htmlFor="link" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">Link</label>
+                    <input id="link" type="url" value={link} onChange={(e) => setLink(e.target.value)} required placeholder="https://..." className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white" />
                 </div>
 
                 <div>
-                    <label htmlFor="type" className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                    <label htmlFor="type" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">
                         Type
                     </label>
-                    <select id="title" value={type} onChange={(e) => setType(e.target.value as ContentType)} className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
+                    <select id="title" value={type} onChange={(e) => setType(e.target.value as ContentType)} className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white">
                         {typeOptions.map((t) => (
                             <option key={t} value={t}>
                                 {t[0].toUpperCase() + t.slice(1)}
@@ -80,14 +80,14 @@ export function AddContentModal({isOpen, onClose, onSubmit}: AddContentModalProp
                 </div>
 
                 <div>
-                    <label htmlFor="tags" className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                    <label htmlFor="tags" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">
                         Tags <span className="font-normal text-slate-400">(comma separated)</span>
                     </label>
-                    <input id="tags" type="text" value={tagsInput} onChange={(e) => setTagsInput(e.target.value)} required className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white" />
+                    <input id="tags" type="text" value={tagsInput} onChange={(e) => setTagsInput(e.target.value)} required className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white" />
                 </div>
 
                 <div className="flex justify-end gap-2 pt-2">
-                        <button type="button" onClick={handleClose} className="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 dark:bg-slate-100 dark:text-slate-800 dark:hover:bg-slate-300 cursor-pointer">Cancel</button>
+                        <button type="button" onClick={handleClose} className="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 dark:bg-neutral-100 dark:text-neutral-800 dark:hover:bg-neutral-300 cursor-pointer">Cancel</button>
 
                         <button type="submit" disabled={isSubmitting} className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer">
                             {isSubmitting ? 'Adding...' : 'Add Content'}
