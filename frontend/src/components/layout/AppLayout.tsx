@@ -25,7 +25,7 @@ export function AppLayout({ children, activeId, onSelect, onShareClick, onAddCli
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     return (
-        <div className='flex min-h-screen bg-slate-50 dark:bg-slate-950'>
+        <div className='flex min-h-dvh bg-slate-50 dark:bg-slate-950'>
             <Sidebar
                 items={navItems}
                 activeId={activeId}
