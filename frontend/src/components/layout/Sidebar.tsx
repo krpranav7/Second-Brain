@@ -41,7 +41,7 @@ export function Sidebar({ items, activeId, onSelect, isOpen, onClose }: SidebarP
                 <div className='fixed inset-0 z-30 bg-black/50 md:hidden' onClick={onClose} aria-hidden='true' />
             )}
 
-            <aside className={`fixed inset-y-0 z-40 w-64 transform border-r border-slate-200 bg-white transition-transform duration-200 ease-in-out dark:border-neutral-800 dark:bg-neutral-900 md:sticky md:top-0 md:h-screen md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <aside className={`fixed inset-y-0 z-40 w-64 transform border-r border-slate-200 bg-white/80 backdrop-blur-md transition-transform duration-200 ease-in-out dark:border-neutral-800 dark:bg-neutral-900/70 md:sticky md:top-0 md:h-screen md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
 
                 <div className="flex items-center justify-between gap-2 border-b border-slate-200 p-4 dark:border-neutral-800">
                     <div className="flex items-center gap-3 overflow-hidden">

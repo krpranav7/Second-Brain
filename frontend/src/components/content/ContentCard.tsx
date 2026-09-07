@@ -25,7 +25,7 @@ export function ContentCard({content, onDelete}: ContentCardProps){
     const showImageEmbed = content.type === 'image' && !imageFailed
 
     return(
-        <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900">
+        <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:shadow-lg hover:-translate-y-0.5 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:shadow-gray-800/75 hover:shadow-gray-400/75">
             <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2 text-slate-500 dark:text-neutral-400">
                     <Icon size={18} />
