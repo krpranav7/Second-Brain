@@ -67,7 +67,7 @@ export function Sidebar({ items, activeId, onSelect, isOpen, onClose }: SidebarP
                     </div>
                     
                     <button onClick={handleLogout} aria-label="Log out"
-                        className="cursor-pointer shrink-0 rounded-lg p-2 text-slate-600/95 dark:text-slate-400/90 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10 dark:hover:text-red-400"
+                        className="hover:scale-105 cursor-pointer shrink-0 rounded-lg p-2 text-slate-600/95 dark:text-slate-400/90 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10 dark:hover:text-red-400"
                     >
                         <LogOut size={18} />
                     </button>
@@ -86,7 +86,7 @@ export function Sidebar({ items, activeId, onSelect, isOpen, onClose }: SidebarP
                                     // }
                                     onClose()
                                 }}
-                                className={`cursor-pointer flex items-center gap-3 rounded-lg px-3 py-2 text-left text-sm font-medium transition-colors ${isActive ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-400' : 'text-slate-600 hover:bg-slate-100 dark:text-neutral-300 dark:hover:bg-neutral-700/55'}`}
+                                className={`cursor-pointer flex items-center gap-3 rounded-lg px-3 py-2 text-left text-sm font-medium transition-transform duration-250 ease-in-out hover:translate-x-1 ${isActive ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-400' : 'text-slate-600 hover:bg-slate-100 dark:text-neutral-300 dark:hover:bg-neutral-700/55'}`}
                             >
                                 <Icon size={18} />
                                 {item.label}
