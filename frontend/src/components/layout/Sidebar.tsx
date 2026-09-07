@@ -1,4 +1,4 @@
-import type { ElementType } from 'react';
+import { useEffect, type ElementType } from 'react';
 import { LogOut, User } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
@@ -35,10 +35,23 @@ export function Sidebar({ items, activeId, onSelect, isOpen, onClose }: SidebarP
         }
     }
 
+    useEffect(() => {
+        if(isOpen){
+            document.body.style.overflow = 'hidden'
+        }
+        else{
+            document.body.style.overflow = ''
+        }
+
+        return () => {
+            document.body.style.overflow = ''
+        }
+    }, [isOpen])
+
     return (
         <>
             {isOpen && (
-                <div className='fixed inset-0 z-30 bg-black/50 md:hidden' onClick={onClose} aria-hidden='true' />
+                <div className='fixed inset-0 z-30 bg-black/50 backdrop-blur-xs md:hidden' onClick={onClose} aria-hidden='true' />
             )}
 
             <aside className={`fixed inset-y-0 z-40 w-64 transform border-r border-slate-200 bg-white/70 backdrop-blur-md transition-transform duration-200 ease-in-out dark:border-neutral-800 dark:bg-neutral-900/70 md:sticky md:top-0 md:h-screen md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
