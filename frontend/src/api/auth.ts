@@ -5,17 +5,18 @@ interface AuthResponse{
     user: {
         _id: string
         username: string
+        email: string
     }
 }
 
-export async function signup(username: string, password: string): Promise<AuthResponse>{
-    const response = await api.post<AuthResponse>('/signup', {username, password})
+export async function signup(username: string, email: string, password: string): Promise<AuthResponse>{
+    const response = await api.post<AuthResponse>('/signup', {username, email, password})
 
     return response.data
 }
 
-export async function login(username: string, password: string): Promise<AuthResponse>{
-    const response = await api.post<AuthResponse>('/signin', {username, password})
+export async function login(email: string, password: string): Promise<AuthResponse>{
+    const response = await api.post<AuthResponse>('/signin', {email, password})
 
     return response.data
 }

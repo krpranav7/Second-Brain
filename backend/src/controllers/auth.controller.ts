@@ -1,7 +1,7 @@
 import { userModel } from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import { type Request, type Response } from 'express'
+import e, { type Request, type Response } from 'express'
 import { contentModel } from '../models/content.model.js';
 import { tagModel } from '../models/tag.model.js';
 import { linkModel } from '../models/link.model.js';
@@ -9,25 +9,28 @@ import { hashGenerator } from '../utilities/hashGenerator.js'
 
 export async function registerUser (req: Request, res: Response) {
   try {
-    const { username, password } = req.body
-    if (!username?.trim() || !password?.trim()) {
+    const { username, email, password } = req.body
+    if (!username?.trim() || !email?.trim() || !password?.trim()) {
       return res.status(400).json({
-        message: 'Username and password are required'
+        message: 'Username, email and password are required'
       })
     }
 
+    const normalizedEmail = email.trim().toLowerCase();
+
     const isUserExists = await userModel.findOne({
-      username
+      $or: [{username}, {email: normalizedEmail}]
     })
     if (isUserExists) {
       return res.status(409).json({
-        message: 'Username already taken'
+        message: 'Username or email already taken'
       })
     }
 
     const hashedPwd = await bcrypt.hash(password, 8)
     const user = await userModel.create({
       username: username.trim(),
+      email: normalizedEmail,
       password: hashedPwd
     })
 
@@ -50,7 +53,8 @@ export async function registerUser (req: Request, res: Response) {
       message: 'Signup successfull',
       user: {
         _id: user._id,
-        username: user.username
+        username: user.username,
+        email: user.email
       }
     })
   } catch (err) {
@@ -63,15 +67,17 @@ export async function registerUser (req: Request, res: Response) {
 
 export async function loginUser (req: Request, res: Response) {
   try {
-    const { username, password } = req.body
-    if (!username?.trim() || !password?.trim()) {
+    const { email, password } = req.body
+    if (!email?.trim() || !password?.trim()) {
       return res.status(400).json({
-        message: 'Username and password are required'
+        message: 'Email and password are required'
       })
     }
 
+    const normalizedEmail = email.trim().toLowerCase()
+
     const user = await userModel.findOne({
-      username
+      email: normalizedEmail
     })
     if (!user) {
       return res.status(400).json({
@@ -105,7 +111,8 @@ export async function loginUser (req: Request, res: Response) {
       message: 'Login successfull',
       user: {
         _id: user._id,
-        username: user.username
+        username: user.username,
+        email: user.email
       }
     })
   } catch (err) {

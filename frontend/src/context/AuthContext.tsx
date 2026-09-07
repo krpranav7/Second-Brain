@@ -4,6 +4,7 @@ import { getCurrentUser } from '../api/auth'
 interface User {
     _id: string
     username: string
+    email: string
 }
 
 interface AuthContextType {

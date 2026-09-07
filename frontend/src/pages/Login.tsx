@@ -6,7 +6,7 @@ import { ThemeToggle } from "../components/ui/ThemeToggle"
 import { useAuth } from "../context/AuthContext"
 
 export function Login() {
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -19,7 +19,7 @@ export function Login() {
         setIsLoading(true)
 
         try {
-            const {user} = await login(username, password)
+            const {user} = await login(email, password)
             setUser(user)
             navigate('/')
         }
@@ -54,9 +54,9 @@ export function Login() {
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <div>
-                        <label htmlFor="username" className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Username</label>
-                        <input type="text" id="username" value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                        <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
+                        <input type="email" id="email" value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                             className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                         />
