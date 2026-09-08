@@ -50,7 +50,7 @@ export function ContentCard({content, onDelete}: ContentCardProps){
                         src={content.link}
                         alt={content.title}
                         onError={() => setImageFailed(true)}
-                        className="h-full w-full rounded-lg object-cover"
+                        className="h-full w-full rounded-lg object-contain"
                         loading="lazy"
                     />
                 </div>
