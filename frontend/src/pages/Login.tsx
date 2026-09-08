@@ -71,7 +71,7 @@ export function Login() {
                         />
                     </div>
 
-                    <button type="submit" disabled={isLoading} className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60">{isLoading ? 'Logging in..' : 'Login'}</button>
+                    <button type="submit" disabled={isLoading} className="cursor-pointer rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60">{isLoading ? 'Logging in..' : 'Login'}</button>
                 </form>
 
                 <p className="mt-4 text-center text-sm text-slate-500 dark:text-neutral-400">Don't have an account?{' '}
