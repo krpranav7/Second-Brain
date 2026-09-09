@@ -59,7 +59,7 @@ export function Profile() {
         <div className="min-h-dvh bg-slate-50 px-4 py-8 dark:bg-neutral-950">
             <div className="mx-auto max-w-lg">
                 <button onClick={() => navigate('/')}
-                    className="mb-6 flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-neutral-400 dark:hover:text-white"    
+                    className="cursor-pointer mb-6 flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-neutral-400 dark:hover:text-white"    
                 >
                     <ArrowLeft size={18} />
                     Back to Dashboard
@@ -113,7 +113,7 @@ export function Profile() {
                         <button
                         type="submit"
                         disabled={isProfileSubmitting}
-                        className="self-start rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="cursor-pointer self-start rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
                         >
                         {isProfileSubmitting ? 'Saving...' : 'Save Changes'}
                         </button>
@@ -166,7 +166,7 @@ export function Profile() {
                         <button
                         type="submit"
                         disabled={isPasswordSubmitting}
-                        className="self-start rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="cursor-pointer self-start rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
                         >
                         {isPasswordSubmitting ? 'Changing...' : 'Change Password'}
                         </button>
