@@ -58,7 +58,7 @@ export function Sidebar({ items, activeId, onSelect, isOpen, onClose }: SidebarP
 
                 <div className="flex items-center justify-between gap-2 border-b border-slate-200 p-4 dark:border-neutral-800">
                     <button onClick={() => navigate('/profile')}
-                        className="cursor-pointer flex items-center gap-3 overflow-hidden rounded-lg p-1 -m-1 hover:bg-slate-100 dark:hover:bg-neutral-800"    
+                        className="cursor-pointer flex items-center gap-3 overflow-hidden rounded-lg p-1 -m-1 hover:outline-1 outline-gray-600/60"    
                     >
                         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400">
                             <User size={18} />

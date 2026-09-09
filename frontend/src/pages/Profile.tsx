@@ -67,7 +67,7 @@ export function Profile() {
 
                 <h1 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">Profile Settings</h1>
 
-                <div className="mb-6 rounded-xl border border-slate-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
+                <div className="mb-6 rounded-xl border border-slate-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900 shadow-sm hover:shadow-lg dark:hover:shadow-gray-800/75 hover:shadow-gray-400/75">
                     <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Profile Information</h2>
 
                     {profileError && (
@@ -83,44 +83,44 @@ export function Profile() {
 
                     <form onSubmit={handleProfileSubmit} className="flex flex-col gap-4">
                         <div>
-                        <label htmlFor="username" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">
-                            Username
-                        </label>
-                        <input
-                            id="username"
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
-                        />
+                            <label htmlFor="username" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">
+                                Username
+                            </label>
+                            <input
+                                id="username"
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
+                            />
                         </div>
 
                         <div>
-                        <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">
-                            Email
-                        </label>
-                        <input
-                            id="email"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
-                        />
+                            <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">
+                                Email
+                            </label>
+                            <input
+                                id="email"
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
+                            />
                         </div>
 
                         <button
                         type="submit"
                         disabled={isProfileSubmitting}
                         className="cursor-pointer self-start rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
-                        >
-                        {isProfileSubmitting ? 'Saving...' : 'Save Changes'}
+                            >
+                            {isProfileSubmitting ? 'Saving...' : 'Save Changes'}
                         </button>
                     </form>
                 </div>
 
-                <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
+                <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900 shadow-sm hover:shadow-lg dark:hover:shadow-gray-800/75 hover:shadow-gray-400/75">
                     <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Change Password</h2>
 
                     {passwordError && (
@@ -136,39 +136,39 @@ export function Profile() {
 
                     <form onSubmit={handlePasswordSubmit} className="flex flex-col gap-4">
                         <div>
-                        <label htmlFor="currentPassword" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">
-                            Current Password
-                        </label>
-                        <input
-                            id="currentPassword"
-                            type="password"
-                            value={currentPassword}
-                            onChange={(e) => setCurrentPassword(e.target.value)}
-                            required
-                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
-                        />
+                            <label htmlFor="currentPassword" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">
+                                Current Password
+                            </label>
+                            <input
+                                id="currentPassword"
+                                type="password"
+                                value={currentPassword}
+                                onChange={(e) => setCurrentPassword(e.target.value)}
+                                required
+                                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
+                            />
                         </div>
 
                         <div>
-                        <label htmlFor="newPassword" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">
-                            New Password
-                        </label>
-                        <input
-                            id="newPassword"
-                            type="password"
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                            required
-                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
-                        />
+                            <label htmlFor="newPassword" className="mb-1 block text-sm font-medium text-slate-700 dark:text-neutral-300">
+                                New Password
+                            </label>
+                            <input
+                                id="newPassword"
+                                type="password"
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                                required
+                                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
+                            />
                         </div>
 
                         <button
                         type="submit"
                         disabled={isPasswordSubmitting}
                         className="cursor-pointer self-start rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
-                        >
-                        {isPasswordSubmitting ? 'Changing...' : 'Change Password'}
+                            >
+                            {isPasswordSubmitting ? 'Changing...' : 'Change Password'}
                         </button>
                     </form>
                 </div>
