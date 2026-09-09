@@ -342,7 +342,8 @@ export async function getCurrentUser (req: Request, res: Response) {
   res.status(200).json({
     user: {
       _id: user._id,
-      username: user.username
+      username: user.username,
+      email: user.email
     }
   })
 }

@@ -57,14 +57,16 @@ export function Sidebar({ items, activeId, onSelect, isOpen, onClose }: SidebarP
             <aside className={`fixed inset-y-0 z-40 w-56 transform border-r border-slate-200 bg-white/70 backdrop-blur-md transition-transform duration-200 ease-in-out dark:border-neutral-800 dark:bg-neutral-900/70 md:sticky md:top-0 md:h-screen md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
 
                 <div className="flex items-center justify-between gap-2 border-b border-slate-200 p-4 dark:border-neutral-800">
-                    <div className="flex items-center gap-3 overflow-hidden">
+                    <button onClick={() => navigate('/profile')}
+                        className="flex items-center gap-3 overflow-hidden rounded-lg p-1 -m-1 hover:bg-slate-100 dark:hover:bg-neutral-800"    
+                    >
                         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400">
                             <User size={18} />
                         </div>
                         <span className="truncate text-sm font-medium text-slate-900 dark:text-white">
                             {user?.username}
                         </span>
-                    </div>
+                    </button>
                     
                     <button onClick={handleLogout} aria-label="Log out"
                         className="hover:scale-105 cursor-pointer shrink-0 rounded-lg p-2 text-slate-600/95 dark:text-slate-400/90 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10 dark:hover:text-red-400"

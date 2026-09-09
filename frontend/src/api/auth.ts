@@ -29,3 +29,15 @@ export async function getCurrentUser(): Promise<AuthResponse['user']>{
     const response = await api.get<{user: AuthResponse['user']}>('/me')
     return response.data.user
 }
+
+export async function updateProfile(username: string, email: string): Promise<AuthResponse>{
+    const response = await api.patch<AuthResponse>('/me', {username, email})
+
+    return response.data
+}
+
+export async function changePassword(currentPassword: string, newPassword: string): Promise<AuthResponse>{
+    const response = await api.patch<AuthResponse>('/me/password', {currentPassword, newPassword})
+
+    return response.data
+}
