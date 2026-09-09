@@ -2,9 +2,9 @@ import { userModel } from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import e, { type Request, type Response } from 'express'
-import { contentModel } from '../models/content.model.js';
-import { tagModel } from '../models/tag.model.js';
-import { linkModel } from '../models/link.model.js';
+import { contentModel } from '../models/content.model.js'
+import { tagModel } from '../models/tag.model.js'
+import { linkModel } from '../models/link.model.js'
 import { hashGenerator } from '../utilities/hashGenerator.js'
 
 export async function registerUser (req: Request, res: Response) {
@@ -16,10 +16,10 @@ export async function registerUser (req: Request, res: Response) {
       })
     }
 
-    const normalizedEmail = email.trim().toLowerCase();
+    const normalizedEmail = email.trim().toLowerCase()
 
     const isUserExists = await userModel.findOne({
-      $or: [{username}, {email: normalizedEmail}]
+      $or: [{ username }, { email: normalizedEmail }]
     })
     if (isUserExists) {
       return res.status(409).json({
@@ -128,10 +128,10 @@ export async function logoutUser (req: Request, res: Response) {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
-  });
+  })
 
   res.status(200).json({
-    message: "Logout successfull"
+    message: 'Logout successfull'
   })
 }
 
@@ -140,13 +140,13 @@ export async function addContent (req: Request, res: Response) {
   if (!type?.trim() || !link?.trim() || !title?.trim()) {
     return res.status(400).json({
       message: 'Types or Link or Title missing are required'
-    });
+    })
   }
 
   const user = req.user
-  if(!user){
+  if (!user) {
     return res.status(401).json({
-      message: "Unauthorized"
+      message: 'Unauthorized'
     })
   }
   // Wrapped in Promise.all because we're doing several independent async DB calls (one per tag) — running them concurrently instead of one at a time with a loop.
@@ -154,9 +154,9 @@ export async function addContent (req: Request, res: Response) {
     (tags ?? []).map(async (tagName: string) => {
       const normalizedTag = tagName.trim().toLowerCase()
       const tag = await tagModel.findOneAndUpdate(
-        {title: normalizedTag},
-        {title: normalizedTag},
-        {upsert: true, returnDocument: 'after'}
+        { title: normalizedTag },
+        { title: normalizedTag },
+        { upsert: true, returnDocument: 'after' }
       )
       return tag._id
     })
@@ -171,39 +171,40 @@ export async function addContent (req: Request, res: Response) {
   })
   await content.populate('tags')
   res.status(201).json({
-    message: "Content addition successful",
+    message: 'Content addition successful',
     content
   })
 }
 
-export async function getContents(req: Request, res: Response){
-  try{
+export async function getContents (req: Request, res: Response) {
+  try {
     const user = req.user
-    if(!user){
+    if (!user) {
       return res.status(401).json({
-        message: "Unauthorized"
+        message: 'Unauthorized'
       })
     }
     const userId = user._id
-    const contents = await contentModel.find({
-      userId
-    }).sort({createdAt: -1})
-      .populate('userId', 'username').populate('tags')
+    const contents = await contentModel
+      .find({
+        userId
+      })
+      .sort({ createdAt: -1 })
+      .populate('userId', 'username')
+      .populate('tags')
 
-    if(contents.length === 0){
+    if (contents.length === 0) {
       return res.status(200).json({
-        message: "No content added for this user",
+        message: 'No content added for this user',
         contents: []
       })
     }
 
     res.status(200).json({
-      message: "Contents fetch successful",
+      message: 'Contents fetch successful',
       contents
     })
-
-  }
-  catch(err){
+  } catch (err) {
     console.log('get all existing contents error: ', err)
     res.status(500).json({
       message: 'Internal server error'
@@ -211,26 +212,26 @@ export async function getContents(req: Request, res: Response){
   }
 }
 
-export async function deleteContent(req: Request, res: Response){
-  try{
-    const contentId = req.body.contentId;
+export async function deleteContent (req: Request, res: Response) {
+  try {
+    const contentId = req.body.contentId
     const content = await contentModel.findById(contentId)
-    if(!content){
+    if (!content) {
       return res.status(404).json({
-        message: "Incorrect contentId"
+        message: 'Incorrect contentId'
       })
     }
 
     const user = req.user
-    if(!user){
+    if (!user) {
       return res.status(401).json({
-        message: "Unauthorized"
+        message: 'Unauthorized'
       })
     }
 
-    if(content.userId.toString() !== user._id.toString()){
+    if (content.userId.toString() !== user._id.toString()) {
       return res.status(403).json({
-        message: "You are not allowed to delete this content"
+        message: 'You are not allowed to delete this content'
       })
     }
     await contentModel.deleteOne({
@@ -239,36 +240,35 @@ export async function deleteContent(req: Request, res: Response){
     })
 
     res.status(200).json({
-      message: "Content deleted",
+      message: 'Content deleted',
       content
     })
-  }
-  catch(err){
+  } catch (err) {
     console.log('Content deletion error: ', err)
     res.status(500).json({
       message: 'Internal server error'
-    })   
+    })
   }
 }
 
-export async function shareBrain(req: Request, res: Response){
-  try{
-    const share = req.body.share; // true or false
-    const user = req.user;
-    if(!user){
+export async function shareBrain (req: Request, res: Response) {
+  try {
+    const share = req.body.share // true or false
+    const user = req.user
+    if (!user) {
       return res.status(401).json({
-        message: "Unauthorized"
+        message: 'Unauthorized'
       })
     }
 
-    if(share){
+    if (share) {
       const existingLink = await linkModel.findOne({
         userId: user._id
       })
-      
-      if(existingLink){
+
+      if (existingLink) {
         return res.status(409).json({
-          message: "share link already exists",
+          message: 'share link already exists',
           hash: existingLink.hash
         })
       }
@@ -279,41 +279,40 @@ export async function shareBrain(req: Request, res: Response){
       })
 
       res.status(201).json({
-        message: "Hash/shareable link creation successful",
+        message: 'Hash/shareable link creation successful',
         hash: hash
       })
-    } else{
+    } else {
       await linkModel.deleteOne({
         userId: user._id
       })
       return res.status(200).json({
-        message: "shareable hash/link deletion successful"
+        message: 'shareable hash/link deletion successful'
       })
     }
-  }
-  catch(err){
+  } catch (err) {
     console.log('Brain share error: ', err)
     res.status(500).json({
       message: 'Internal server error'
-    }) 
+    })
   }
 }
 
-export async function getSharedBrain(req: Request, res: Response) {
-  try{
-    const hash = req.params.shareLink;
-    if(!hash){
+export async function getSharedBrain (req: Request, res: Response) {
+  try {
+    const hash = req.params.shareLink
+    if (!hash) {
       return res.status(400).json({
-        message: "Corrupted hash/link"
+        message: 'Corrupted hash/link'
       })
     }
 
     const link = await linkModel.findOne({
       hash: hash
     })
-    if(!link){
+    if (!link) {
       return res.status(404).json({
-        message: "Incorrect hash/link"
+        message: 'Incorrect hash/link'
       })
     }
 
@@ -321,21 +320,20 @@ export async function getSharedBrain(req: Request, res: Response) {
       userId: link.userId
     })
     res.status(200).json({
-      message: "Brain fetch successful",
+      message: 'Brain fetch successful',
       content: content
     })
-  }
-  catch(err){
+  } catch (err) {
     console.log('Shared brain fetch error: ', err)
     res.status(500).json({
       message: 'Internal server error'
-    }) 
+    })
   }
 }
 
-export async function getCurrentUser(req: Request, res: Response){
-  const  user = req.user
-  if(!user){
+export async function getCurrentUser (req: Request, res: Response) {
+  const user = req.user
+  if (!user) {
     return res.status(401).json({
       message: 'Not authenticated'
     })
@@ -347,4 +345,90 @@ export async function getCurrentUser(req: Request, res: Response){
       username: user.username
     }
   })
+}
+
+export async function updateProfile(req: Request, res: Response){
+  try {
+    const user = req.user
+    if(!user){
+      return res.status(401).json({
+        message: 'Unauthorized'
+      })
+    }
+
+    const {username, email} = req.body
+    if(!username?.trim() || !email?.trim()){
+      return res.status(400).json({
+        message: 'Username and email are required'
+      })
+    }
+
+    const normalizedEmail = email.trim().toLowerCase()
+
+    const conflictingUser = await userModel.findOne({
+      _id: {$ne: user._id},
+      $or: [{username: username.trim()}, {email: normalizedEmail}]
+    })
+    if(conflictingUser){
+      return res.status(409).json({
+        message: 'Username or email already taken'
+      })
+    }
+
+    user.username = username.trim()
+    user.email = normalizedEmail
+    await user.save()
+
+    return res.status(200).json({
+        message: 'Profie updated successfully',
+        user: {
+          _id: user._id,
+          username: user.username,
+          email: user.email
+        }
+    })
+    
+  } catch (err) {
+      console.log('Profile update error: ', err)
+      return res.status(500).json({
+        message: 'Internal sever error'
+      })
+  }
+}
+
+export async function changePassword(req: Request, res: Response){
+  try {
+    const user = req.user
+    if(!user){
+      return res.status(401).json({
+        message: 'Unauthorized'
+      })
+    }
+
+    const {currentPassword, newPassword} = req.body
+    if(!currentPassword?.trim() || !newPassword?.trim()){
+      return res.status(400).json({
+        message: 'Current and new password are required'
+      })
+    }
+
+    const isPwdValid = await bcrypt.compare(currentPassword, user.password)
+    if(!isPwdValid){
+      return res.status(400).json({
+        message: 'Current password is incorrect'
+      })
+    }
+
+    user.password = await bcrypt.hash(newPassword, 8)
+    await user.save()
+
+    res.status(200).json({
+      message: 'Password changed successfully'
+    })
+  } catch (err) {
+    console.log('Password change error: ', err)
+    res.status(500).json({
+      message: 'Internal server error'
+    })
+  }
 }
