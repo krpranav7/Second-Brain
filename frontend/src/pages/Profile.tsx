@@ -65,7 +65,7 @@ export function Profile() {
                     Back to Dashboard
                 </button>
 
-                <h1 className="mb-6 text-2xl font-bold text-slate-200 dark:text-white">Profile Settings</h1>
+                <h1 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">Profile Settings</h1>
 
                 <div className="mb-6 rounded-xl border border-slate-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
                     <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Profile Information</h2>
