@@ -14,7 +14,7 @@ const typeIconMap: Record<ContentType, ElementType> = {
 
 interface ContentCardProps{
     content: Content
-    onDelete: (id: string) => void
+    onDelete: (content: Content) => void
 }
 
 export function ContentCard({content, onDelete}: ContentCardProps){
@@ -38,7 +38,7 @@ export function ContentCard({content, onDelete}: ContentCardProps){
                     <a href={content.link} target="_blank" rel="noopener noreferrer" className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-neutral-800 dark:hover:text-neutral-300 hover:scale-110">
                         <Link2 className="cursor-pointer" size={16} />
                     </a>
-                    <button onClick={() => onDelete(content._id)} aria-label="Delete content" className="cursor-pointer rounded-lg p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/25 dark:hover:text-red-400 hover:scale-110">
+                    <button onClick={() => onDelete(content)} aria-label="Delete content" className="cursor-pointer rounded-lg p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/25 dark:hover:text-red-400 hover:scale-110">
                         <Trash2 size={16}/>
                     </button>
                 </div>
