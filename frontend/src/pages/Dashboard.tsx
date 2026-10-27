@@ -4,11 +4,13 @@ import { ContentGrid } from "../components/content/ContentGrid"
 import { useContent } from "../hooks/useContent"
 import { AddContentModal } from '../components/content/AddContentModal'
 import { Loader } from "../components/ui/Loader"
+import { ShareBrainModel } from "../components/content/ShareBrainModel";
 
 export function Dashboard() {
     const [activeId, setActiveId] = useState('all')
     const { contents, isLoading, error, removeContent, createContent } = useContent()
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isShareModelOpen, setIsShareModelOpen] = useState(false)
 
     const filteredContents = activeId === 'all' ? contents : contents.filter((c) => c.type === activeId)
 
@@ -16,7 +18,7 @@ export function Dashboard() {
 
     return (
         <AppLayout activeId={activeId} onSelect={setActiveId}
-            onShareClick={() => alert('Share Brain modal - coming soon')}
+            onShareClick={() => setIsShareModelOpen(true)}
             onAddClick={() => setIsModalOpen(true)}
         >
             <h1 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">{activeLabel}</h1>
@@ -32,6 +34,7 @@ export function Dashboard() {
             )}
 
             <AddContentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={createContent}/>
+            <ShareBrainModel isOpen={isShareModelOpen} onClose={() => setIsShareModelOpen(false)}/>
         </AppLayout>
     )
 }
