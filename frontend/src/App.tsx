@@ -4,6 +4,7 @@ import { Signup } from './pages/Signup'
 import { Dashboard } from './pages/Dashboard'
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { Profile } from './pages/Profile'
+import { SharedBrain } from './pages/SharedBrain';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
+      <Route path="/brain/:shareLink" element={<SharedBrain />} />
     </Routes>
   )
 }

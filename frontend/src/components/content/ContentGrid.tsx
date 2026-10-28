@@ -5,7 +5,7 @@ import { ConfirmDialog } from '../ui/ConfirmDialog'
 
 interface ContentGridProps {
     contents: Content[]
-    onDelete: (id: string) => void
+    onDelete?: (id: string) => void
 }
 
 export function ContentGrid({ contents, onDelete }: ContentGridProps) {
@@ -16,7 +16,7 @@ export function ContentGrid({ contents, onDelete }: ContentGridProps) {
     async function handleConfirmDelete() {
         if (!pendingDelete) return
         setIsDeleting(true)
-        await onDelete(pendingDelete._id)
+        if(onDelete != undefined) await onDelete(pendingDelete._id)
         setIsDeleting(false)
         setPendingDelete(null)
     }
@@ -35,7 +35,7 @@ export function ContentGrid({ contents, onDelete }: ContentGridProps) {
         <>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {contents.map((content) => (
-                    <ContentCard key={content._id} content={content} onDelete={setPendingDelete} /> //this onDelete is the trash icon click functionality on content card
+                    <ContentCard key={content._id} content={content} onDelete={onDelete ? setPendingDelete: undefined} /> //this onDelete is the trash icon click functionality on content card
                 ))}
             </div>
 

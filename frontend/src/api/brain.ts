@@ -1,4 +1,5 @@
 import { api } from './axios'
+import type { Content } from '../types'
 
 interface ShareBrainResponse {
     message: string
@@ -21,4 +22,9 @@ export async function getOrCreateShareLink(): Promise<string> {
 
 export async function stopSharing(): Promise<void> {
     await api.post('/brain/share', { share: false })
+}
+
+export async function getSharedBrain(hash: string): Promise<Content[]> {
+    const response = await api.get<{content: Content[]}>(`/brain/${hash}`)
+    return response.data.content
 }
