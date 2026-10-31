@@ -3,12 +3,12 @@ import {useEffect, useState} from 'react'
 import { Modal } from '../ui/Modal';
 import { getOrCreateShareLink, stopSharing } from '../../api/brain';
 
-interface ShareBrainModelProps{
+interface ShareBrainModalProps{
     isOpen: boolean
     onClose: () => void
 }
 
-export function ShareBrainModel({isOpen, onClose}: ShareBrainModelProps){
+export function ShareBrainModal({isOpen, onClose}: ShareBrainModalProps){
     const [hash, setHash] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [isStopping, setIsStopping] = useState(false)

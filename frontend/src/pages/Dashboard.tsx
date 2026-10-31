@@ -4,7 +4,7 @@ import { ContentGrid } from "../components/content/ContentGrid"
 import { useContent } from "../hooks/useContent"
 import { AddContentModal } from '../components/content/AddContentModal'
 import { Loader } from "../components/ui/Loader"
-import { ShareBrainModel } from "../components/content/ShareBrainModal";
+import { ShareBrainModal } from "../components/content/ShareBrainModal";
 
 export function Dashboard() {
     const [activeId, setActiveId] = useState('all')
@@ -34,7 +34,7 @@ export function Dashboard() {
             )}
 
             <AddContentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={createContent}/>
-            <ShareBrainModel isOpen={isShareModelOpen} onClose={() => setIsShareModelOpen(false)}/>
+            <ShareBrainModal isOpen={isShareModelOpen} onClose={() => setIsShareModelOpen(false)}/>
         </AppLayout>
     )
 }
