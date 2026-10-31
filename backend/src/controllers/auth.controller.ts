@@ -319,6 +319,9 @@ export async function getSharedBrain (req: Request, res: Response) {
     const content = await contentModel.find({
       userId: link.userId
     })
+    .sort({createdAt: -1})
+    .populate('tags')
+    
     res.status(200).json({
       message: 'Brain fetch successful',
       content: content
