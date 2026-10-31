@@ -4,7 +4,7 @@ import { ContentGrid } from "../components/content/ContentGrid"
 import { useContent } from "../hooks/useContent"
 import { AddContentModal } from '../components/content/AddContentModal'
 import { Loader } from "../components/ui/Loader"
-import { ShareBrainModel } from "../components/content/ShareBrainModel";
+import { ShareBrainModel } from "../components/content/ShareBrainModal";
 
 export function Dashboard() {
     const [activeId, setActiveId] = useState('all')

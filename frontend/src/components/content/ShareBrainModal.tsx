@@ -46,7 +46,7 @@ export function ShareBrainModel({isOpen, onClose}: ShareBrainModelProps){
             setError('Failed to stop sharing')
         }
         finally{
-            setIsLoading(false)
+            setIsStopping(false)
         }
     }
 
